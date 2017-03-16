@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tópicos de pesquisa</h1>
+
+    <% @topics.each do |topic| %>
+      <div class="card mb-3">
+        <div class="card-block">
+          <h4 class="card-title"><%= topic.name %></h4>
+          <h6 class="card-subtitle mb-2 text-muted">9 pesquisando isso</h6>
+          <p class="card-text"><%= topic.description %></p>
+          <%= link_to 'Mostrar', topic, class: "card-link" %>
+          <%= link_to 'Editar', edit_topic_path(topic), class: "card-link" %>
+          <%= link_to 'Apagar', topic, method: :delete, data: { confirm: 'Tem certeza?' }, class: "card-link" %>
+        </div>
+      </div>
+    <% end %>
+
+<br>
+
+<%= link_to 'New Topic', new_topic_path %>

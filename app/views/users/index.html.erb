@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
+<%= link_to "Change your password", edit_user_registration_path %>
+
 
 <table>
   <thead>
@@ -12,14 +14,14 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.topics.to_json %></td>
+        <td><%= link_to 'Mostrar', user %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
