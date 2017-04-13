@@ -7,13 +7,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :topics, through: :research_interests
   has_many :research_interests
-
+  
   include HTTParty
   base_uri 'https://api.elsevier.com'
 
+  def similar
+    return User.joins(:topics).where("user.topics = #{self.topics}")
+  end
+  
+ 
   def update_from_scopus
     @api_key = ENV['SCOPUS_API_KEY']
     response = self.class.get('/content/search/author',  query: { query: "authlast(#{last_name}) and authfirst(#{name}) and af-id(60008088)", apiKey: @api_key }).body
+    puts response
     profile = JSON.parse(response)["search-results"]["entry"][0]
     if profile
       publication_count = profile["document-count"] || 0
