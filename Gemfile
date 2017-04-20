@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Gem to make API requests
 gem 'httparty'
+gem 'faraday'
+gem 'faraday_middleware'
 
 gem 'devise'
 gem 'bootstrap', '~> 4.0.0.alpha6'
